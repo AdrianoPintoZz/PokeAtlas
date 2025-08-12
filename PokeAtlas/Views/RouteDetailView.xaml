@@ -1,0 +1,128 @@
+﻿<Page x:Class="PokeAtlas.RouteDetailView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Background="#0F1115" Margin="0">
+
+    <!-- Recursos -->
+    <Page.Resources>
+        <SolidColorBrush x:Key="BgCard" Color="#171A21"/>
+        <SolidColorBrush x:Key="BorderBrush" Color="#2A2F3A"/>
+        <SolidColorBrush x:Key="FgPrimary" Color="#E5E7EB"/>
+        <SolidColorBrush x:Key="FgMuted" Color="#9CA3AF"/>
+
+        <Style x:Key="PillButton" TargetType="Button">
+            <Setter Property="Foreground" Value="{StaticResource FgPrimary}"/>
+            <Setter Property="Background" Value="#1F2937"/>
+            <Setter Property="Padding" Value="10,6"/>
+            <Setter Property="Margin" Value="0,0,8,0"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="DataGrid">
+            <Setter Property="Background" Value="{StaticResource BgCard}"/>
+            <Setter Property="Foreground" Value="{StaticResource FgPrimary}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="RowBackground" Value="#141821"/>
+            <Setter Property="AlternatingRowBackground" Value="#111520"/>
+            <Setter Property="GridLinesVisibility" Value="Horizontal"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="#222839"/>
+            <Setter Property="ColumnHeaderHeight" Value="36"/>
+            <Setter Property="RowHeight" Value="34"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="Margin" Value="8"/>
+        </Style>
+
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="#1C2433"/>
+            <Setter Property="Foreground" Value="{StaticResource FgPrimary}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <DockPanel Grid.Row="0" LastChildFill="False" Margin="0,0,0,12">
+            <Button Style="{StaticResource PillButton}" Click="Back_Click" Content="⟵ Voltar"/>
+            <TextBlock x:Name="Header"
+                 DockPanel.Dock="Right"
+                 FontSize="20" FontWeight="Bold"
+                 Foreground="{StaticResource FgPrimary}" />
+        </DockPanel>
+
+        <!-- Toolbar (Pesquisar + Filtro) -->
+        <Grid Grid.Row="1" Margin="0,0,0,12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="8"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="8"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Horizontal" Grid.Column="0">
+                <TextBlock Text="Pesquisar:" VerticalAlignment="Center"
+                   Foreground="{StaticResource FgMuted}" Margin="0,0,8,0"/>
+                <TextBox x:Name="SearchBox"
+                 Height="32"
+                 Foreground="{StaticResource FgPrimary}"
+                 Background="#111520"
+                 BorderBrush="{StaticResource BorderBrush}"
+                 BorderThickness="1"
+                 Padding="10,4" Width="100"/>
+            </StackPanel>
+
+            <ComboBox x:Name="MethodFilter"
+                Grid.Column="2" Height="32"
+                Foreground="BlueViolet"
+                Background="#111520"
+                BorderBrush="{StaticResource BorderBrush}">
+                <ComboBoxItem Content="Todos os métodos" IsSelected="True"/>
+                <ComboBoxItem Content="Relva (walk)"/>
+                <ComboBoxItem Content="Surf (surf)"/>
+                <ComboBoxItem Content="Canas (old-rod/good-rod/super-rod)"/>
+            </ComboBox>
+
+            
+        </Grid>
+
+        <!-- Tabela -->
+        <Border Grid.Row="2" Background="{StaticResource BgCard}"
+            BorderBrush="{StaticResource BorderBrush}"
+            BorderThickness="1" CornerRadius="10">
+            <DataGrid x:Name="EncountersGrid" AutoGenerateColumns="False" MouseDoubleClick="EncountersGrid_MouseDoubleClick">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Pokémon" Binding="{Binding Pokemon}" Width="2*"/>
+                    <DataGridTextColumn Header="Método"  Binding="{Binding Method}"  Width="*"/>
+                    <DataGridTextColumn Header="Nível"   Binding="{Binding LevelRange}" Width="*"/>
+                    <DataGridTextColumn Header="Chance"  Binding="{Binding Chance}" Width="*"/>
+                    <DataGridTextColumn Header="Período" Binding="{Binding TimeOfDay}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+    </Grid>
+</Page>
