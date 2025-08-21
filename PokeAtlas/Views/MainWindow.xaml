@@ -81,99 +81,192 @@
             <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,0,0,8" VerticalAlignment="Center">
                 <TextBlock Text="Zoom" Foreground="{StaticResource FgMuted}" Margin="0,0,8,0"/>
                 <Slider x:Name="ZoomSlider"
-                        Minimum="0.5" Maximum="2.0" Value="1.0"
-                        TickFrequency="0.25" IsSnapToTickEnabled="True" Width="180"/>
+                        Minimum="0.5" Maximum="3.0" Value="1.0"
+                        TickFrequency="0.25" IsSnapToTickEnabled="True" Width="180"
+                        ValueChanged="ZoomSlider_ValueChanged"/>
             </StackPanel>
 
             <!-- Área do mapa -->
             <Border Grid.Row="1" Background="{StaticResource BgCard}"
                     BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" CornerRadius="10">
-                <ScrollViewer x:Name="MapScroll"
-                              HorizontalScrollBarVisibility="Auto"
-                              VerticalScrollBarVisibility="Auto"
-                              CanContentScroll="False">
-                    <Grid>
-                        <Grid.RenderTransform>
-                            <ScaleTransform
-                                ScaleX="{Binding ElementName=ZoomSlider, Path=Value}"
-                                ScaleY="{Binding ElementName=ZoomSlider, Path=Value}"/>
-                        </Grid.RenderTransform>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
+                <Grid>
+                    <ScrollViewer x:Name="MapScroll"
+                                  HorizontalScrollBarVisibility="Auto"
+                                  VerticalScrollBarVisibility="Auto"
+                                  CanContentScroll="False"
+                                  ScrollChanged="MapScroll_ScrollChanged">
+                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Canvas x:Name="MapCanvas"
                                     Width="400" Height="400"
-                                    Background="#0F1115"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center">
+                                    Background="#0F1115">
+                                <Canvas.LayoutTransform>
+                                    <ScaleTransform
+                                        ScaleX="{Binding ElementName=ZoomSlider, Path=Value}"
+                                        ScaleY="{Binding ElementName=ZoomSlider, Path=Value}"/>
+                                </Canvas.LayoutTransform>
+
                                 <Image x:Name="RegionImage"
-                                       Canvas.Left="0" Canvas.Top="0"
+                                       Canvas.Left="1" Canvas.Top="3"
                                        Width="400" Height="400"
                                        Stretch="Fill"
                                        Source="/Images/Kanto_Region.png"
                                        RenderOptions.BitmapScalingMode="HighQuality"
-                                       SizeChanged="RegionImage_SizeChanged"/>
+                                       SizeChanged="RegionImage_SizeChanged" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
-                                <!-- Hotspots definidos por percentuais no Tag -->
+                                <!-- Hotspots -->
                                 <Button Style="{StaticResource HotspotButtonBase}"
                                         Width="30" Height="28"
                                         Content="Pallet Town"
-                                        FontSize="5"
+                                        FontSize="3"
                                         Tag="pallet-town"
                                         Loaded="Hotspot_Loaded"
-                                        Click="Hotspot_Click" Canvas.Left="56" Canvas.Top="253" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                                        Click="Hotspot_Click"
+                                        Canvas.Left="56" Canvas.Top="253"/>
                                 <Button Style="{StaticResource HotspotButtonBase}"
                                         Width="50" Height="45"
                                         Content="Viridian City"
-                                        FontSize="7"
+                                        FontSize="3"
                                         Tag="viridian-city"
                                         Loaded="Hotspot_Loaded"
-                                        Click="Hotspot_Click" Canvas.Left="46" Canvas.Top="178"/>
+                                        Click="Hotspot_Click"
+                                        Canvas.Left="46" Canvas.Top="178"/>
+                                <Button Style="{StaticResource HotspotButtonBase}"
+                                        Width="18" Height="42"
+                                        Content="Viridian Forest"
+                                        FontSize="2"
+                                        Tag="viridian-forest"
+                                        Loaded="Hotspot_Loaded"
+                                        Click="Hotspot_Click" Canvas.Left="56" Canvas.Top="113" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                 <Button Style="{StaticResource HotspotButtonBase}"
                                         Width="25" Height="30"
                                         Content="Route 1"
-                                        FontSize="7"
+                                        FontSize="2"
                                         Tag="kanto-route-1"
                                         Loaded="Hotspot_Loaded"
-                                        Click="Hotspot_Click" Canvas.Left="59" Canvas.Top="223" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                                        Click="Hotspot_Click" Canvas.Left="59" Canvas.Top="223"/>
                                 <Button Style="{StaticResource HotspotButtonBase}"
-                                        Width="50" Height="40"
+                                        Width="50" Height="45"
                                         Content="pewter-city"
-                                        FontSize="7"
+                                        FontSize="3"
                                         Tag="pewter-city"
                                         Loaded="Hotspot_Loaded"
-                                        Click="Hotspot_Click" Canvas.Left="46" Canvas.Top="58"/>
+                                        Click="Hotspot_Click" Canvas.Left="46" Canvas.Top="58" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                 <Button Style="{StaticResource HotspotButtonBase}"
                                         Width="30" Height="155"
                                         Content="Route 23"
-                                        FontSize="5"
+                                        FontSize="3"
                                         Tag="kanto-route-23"
                                         Loaded="Hotspot_Loaded"
-                                        Click="Hotspot_Click" Canvas.Left="-4" Canvas.Top="33" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                                        Click="Hotspot_Click" Canvas.Left="-4" Canvas.Top="33"/>
+                                <Button Style="{StaticResource HotspotButtonBase}"
+                                        Width="80" Height="20"
+                                        Content="Route 3"
+                                        FontSize="3"
+                                        Tag="kanto-route-3"
+                                        Loaded="Hotspot_Loaded"
+                                        Click="Hotspot_Click" Canvas.Left="96" Canvas.Top="73" RenderTransformOrigin="0.5,1.42" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                                <Button Style="{StaticResource HotspotButtonBase}"
+                                        Width="108" Height="20"
+                                        Content="Route 4"
+                                        FontSize="3"
+                                        Tag="kanto-route-4"
+                                        Loaded="Hotspot_Loaded"
+                                        Click="Hotspot_Click" Canvas.Left="153" Canvas.Top="53" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                                 <Button Style="{StaticResource HotspotButtonBase}"
                                         Width="50" Height="27"
                                         Content="Route 22"
-                                        FontSize="7"
+                                        FontSize="3"
                                         Tag="kanto-route-22"
                                         Loaded="Hotspot_Loaded"
-                                        Click="Hotspot_Click" Canvas.Left="-4" Canvas.Top="189" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                        Click="Hotspot_Click" Canvas.Left="-4" Canvas.Top="189">
                                     <Button.RenderTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform/>
-                                            <SkewTransform/>
-                                            <RotateTransform Angle="-0.111"/>
-                                            <TranslateTransform/>
-                                        </TransformGroup>
+                                        <RotateTransform Angle="-0.111"/>
                                     </Button.RenderTransform>
                                 </Button>
+                                <Path Tag="kanto-route-2"
+                                      MouseLeftButtonUp="ShapeHotspot_MouseLeftButtonUp"
+                                      Stroke="#AAFFFFFF" StrokeThickness="1.2"
+                                      Fill="#30FFFFFF" Cursor="Hand"
+                                      Canvas.Left="61" Canvas.Top="103.383"
+                                      Width="26" Height="75"
+                                      Stretch="Fill"
+                                      HorizontalAlignment="Left"
+                                      VerticalAlignment="Center"
+                                      RenderTransformOrigin="0.5,0.5">
+                                    <Path.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform AngleY="0.498"/>
+                                            <RotateTransform/>
+                                            <TranslateTransform Y="0.13"/>
+                                        </TransformGroup>
+                                    </Path.RenderTransform>
+                                    <Path.Data>
+                                        <CombinedGeometry GeometryCombineMode="Exclude">
+                                            <CombinedGeometry.Geometry1>
+                                                <PathGeometry Figures="M40,58 L120,58 L120,240 L40,240 Z"/>
+                                            </CombinedGeometry.Geometry1>
+                                            <CombinedGeometry.Geometry2>
+                                                <RectangleGeometry Rect="40,75,40,112"/>
+                                            </CombinedGeometry.Geometry2>
+                                        </CombinedGeometry>
+                                    </Path.Data>
+                                </Path>
+
+                                <!-- Label sobreposto (NÃO altera medidas do hotspot) -->
+                                <Grid Canvas.Left="61" Canvas.Top="103.383"
+                                      Width="26" Height="75"
+                                      IsHitTestVisible="False">
+                                    <TextBlock Text="Route 2"
+                                               FontSize="4"
+                                               TextAlignment="Center"
+                                               TextWrapping="Wrap"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Top"
+                                               
+                                               Opacity="0.85" Margin="0,62,0,0"/>
+                                </Grid>
                             </Canvas>
                         </Grid>
-                    </Grid>
-                </ScrollViewer>
+                    </ScrollViewer>
+
+                    <!-- Navegação vertical -->
+                    <RepeatButton x:Name="NavUp"
+                                  Visibility="Collapsed"
+                                  Height="32"
+                                  VerticalAlignment="Top"
+                                  HorizontalAlignment="Stretch"
+                                  Click="NavUp_Click"
+                                  Delay="300" Interval="50"
+                                  Content="▲"
+                                  Foreground="White" FontSize="14" FontWeight="Bold"
+                                  BorderThickness="0">
+                        <RepeatButton.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Color="#99000000" Offset="0"/>
+                                <GradientStop Color="#00000000" Offset="1"/>
+                            </LinearGradientBrush>
+                        </RepeatButton.Background>
+                    </RepeatButton>
+
+                    <RepeatButton x:Name="NavDown"
+                                  Visibility="Collapsed"
+                                  Height="32"
+                                  VerticalAlignment="Bottom"
+                                  HorizontalAlignment="Stretch"
+                                  Click="NavDown_Click"
+                                  Delay="300" Interval="50"
+                                  Content="▼"
+                                  Foreground="White" FontSize="14" FontWeight="Bold"
+                                  BorderThickness="0">
+                        <RepeatButton.Background>
+                            <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+                                <GradientStop Color="#99000000" Offset="0"/>
+                                <GradientStop Color="#00000000" Offset="1"/>
+                            </LinearGradientBrush>
+                        </RepeatButton.Background>
+                    </RepeatButton>
+                </Grid>
             </Border>
         </Grid>
     </Grid>
