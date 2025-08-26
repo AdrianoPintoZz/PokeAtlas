@@ -1,6 +1,7 @@
-﻿<Page x:Class="PokeAtlas.MainWindow"
+﻿<Page
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:av="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="av" x:Class="PokeAtlas.MainWindow"
       Background="#0F1115" Margin="0">
 
     <Page.Resources>
@@ -9,7 +10,7 @@
         <SolidColorBrush x:Key="FgPrimary" Color="#E5E7EB"/>
         <SolidColorBrush x:Key="FgMuted" Color="#9CA3AF"/>
 
-        <Style x:Key="HotspotButtonBase" TargetType="Button">
+        <Style x:Key="HotspotButtonBase" TargetType="{x:Type Button}">
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="BorderBrush" Value="#AAFFFFFF"/>
             <Setter Property="BorderThickness" Value="1"/>
@@ -18,7 +19,7 @@
             <Setter Property="Background" Value="#40FFFFFF"/>
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="Button">
+                    <ControlTemplate TargetType="{x:Type Button}">
                         <Border Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
@@ -101,8 +102,8 @@
                                     Background="#0F1115">
                                 <Canvas.LayoutTransform>
                                     <ScaleTransform
-                                        ScaleX="{Binding ElementName=ZoomSlider, Path=Value}"
-                                        ScaleY="{Binding ElementName=ZoomSlider, Path=Value}"/>
+                                        ScaleX="{Binding Value, ElementName=ZoomSlider}"
+                                        ScaleY="{Binding Value, ElementName=ZoomSlider}"/>
                                 </Canvas.LayoutTransform>
 
                                 <Image x:Name="RegionImage"
@@ -152,7 +153,7 @@
                                         Loaded="Hotspot_Loaded"
                                         Click="Hotspot_Click" Canvas.Left="259" Canvas.Top="83" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                                 <Button Style="{StaticResource HotspotButtonBase}"
-                                        Width="73" Height="20"
+                                        Width="71" Height="20"
                                         Content="Route 9"
                                         FontSize="2"
                                         Tag="kanto-route-9"
@@ -196,12 +197,12 @@
                                         Loaded="Hotspot_Loaded"
                                         Click="Hotspot_Click" Canvas.Left="259" Canvas.Top="123" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                 <Button Style="{StaticResource HotspotButtonBase}"
-                                        Width="50" Height="45"
+                                        Width="50" Height="40"
                                         Content="pewter-city"
                                         FontSize="3"
                                         Tag="pewter-city"
                                         Loaded="Hotspot_Loaded"
-                                        Click="Hotspot_Click" Canvas.Left="46" Canvas.Top="58" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        Click="Hotspot_Click" Canvas.Left="46" Canvas.Top="63" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                                 <Button Style="{StaticResource HotspotButtonBase}"
                                         Width="30" Height="155"
                                         Content="Route 23"
@@ -277,6 +278,153 @@
                                                
                                                Opacity="0.85" Margin="0,62,0,0"/>
                                 </Grid>
+                                <Button Style="{StaticResource HotspotButtonBase}"
+                                    Width="72" Height="21"
+                                    Content="Route 8"
+                                    FontSize="2"
+                                    Tag="kanto-route-8"
+                                    Loaded="Hotspot_Loaded"
+                                    Click="Hotspot_Click" Canvas.Left="306" Canvas.Top="133" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <Button Style="{StaticResource HotspotButtonBase}"
+                                    Width="24" Height="21"
+                                    Content="Route 7"
+                                    FontSize="2"
+                                    Tag="kanto-route-7"
+                                    Loaded="Hotspot_Loaded"
+                                    Click="Hotspot_Click" Canvas.Left="236" Canvas.Top="133" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <Button Style="{StaticResource HotspotButtonBase}"
+                                    Width="60" Height="40"
+                                    Content="Celadon City"
+                                    FontSize="2"
+                                    Tag="celadon-city"
+                                    Loaded="Hotspot_Loaded"
+                                    Click="Hotspot_Click" Canvas.Left="177" Canvas.Top="123" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Button Style="{StaticResource HotspotButtonBase}"
+                                    Width="48" Height="20"
+                                    Content="Route 16"
+                                    FontSize="2"
+                                    Tag="kanto-route-16"
+                                    Loaded="Hotspot_Loaded"
+                                    Click="Hotspot_Click" Canvas.Left="130" Canvas.Top="133" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Button Style="{StaticResource HotspotButtonBase}"
+                                    Width="25" Height="160"
+                                    Content="Route 17"
+                                    FontSize="2"
+                                    Tag="kanto-route-17"
+                                    Loaded="Hotspot_Loaded"
+                                    Click="Hotspot_Click" Canvas.Left="131" Canvas.Top="153" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                <Button Style="{StaticResource HotspotButtonBase}"
+                                    Width="47" Height="40"
+                                    Content="Vermilion City"
+                                    FontSize="2"
+                                    Tag="vermilion-city"
+                                    Loaded="Hotspot_Loaded"
+                                    Click="Hotspot_Click" Canvas.Left="260" Canvas.Top="203" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Button Style="{StaticResource HotspotButtonBase}"
+                                    Width="24" Height="42"
+                                    Content="Route 6"
+                                    FontSize="2"
+                                    Tag="kanto-route-6"
+                                    Loaded="Hotspot_Loaded"
+                                    Click="Hotspot_Click" Canvas.Left="271" Canvas.Top="162" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Button Style="{StaticResource HotspotButtonBase}"
+                                    Width="72" Height="20"
+                                    Content="Route 11"
+                                    FontSize="2"
+                                    Tag="kanto-route-11"
+                                    Loaded="Hotspot_Loaded"
+                                    Click="Hotspot_Click" Canvas.Left="306" Canvas.Top="213" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <Button Style="{StaticResource HotspotButtonBase}"
+                                    Width="24" Height="121"
+                                    Content="Route 12"
+                                    FontSize="2"
+                                    Tag="kanto-route-12"
+                                    Loaded="Hotspot_Loaded"
+                                    Click="Hotspot_Click" Canvas.Left="377" Canvas.Top="152" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                                <Button Style="{StaticResource HotspotButtonBase}"
+                                    Width="71" Height="20"
+                                    Content="Route 13"
+                                    FontSize="2"
+                                    Tag="kanto-route-13"
+                                    Loaded="Hotspot_Loaded"
+                                    Click="Hotspot_Click" Canvas.Left="330" Canvas.Top="273" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Button Style="{StaticResource HotspotButtonBase}"
+                                    Width="25" Height="60"
+                                    Content="Route 14"
+                                    FontSize="2"
+                                    Tag="kanto-route-14"
+                                    Loaded="Hotspot_Loaded"
+                                    Click="Hotspot_Click" Canvas.Left="306" Canvas.Top="273" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                <Button Style="{StaticResource HotspotButtonBase}"
+                                    Width="71" Height="20"
+                                    Content="Route 15"
+                                    FontSize="2"
+                                    Tag="kanto-route-15"
+                                    Loaded="Hotspot_Loaded"
+                                    Click="Hotspot_Click" Canvas.Left="236" Canvas.Top="313" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Button Style="{StaticResource HotspotButtonBase}"
+                                    Width="48" Height="40"
+                                    Content="Fuchsia City"
+                                    FontSize="2"
+                                    Tag="fuchsia-city"
+                                    Loaded="Hotspot_Loaded"
+                                    Click="Hotspot_Click" Canvas.Left="189" Canvas.Top="303" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Button Style="{StaticResource HotspotButtonBase}"
+                                    Width="60" Height="20"
+                                    Content="Route 18"
+                                    FontSize="2"
+                                    Tag="kanto-route-18"
+                                    Loaded="Hotspot_Loaded"
+                                    Click="Hotspot_Click" Canvas.Left="130" Canvas.Top="313" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Button Style="{StaticResource HotspotButtonBase}"
+                                    Width="24" Height="61"
+                                    Content="Route 19"
+                                    FontSize="2"
+                                    Tag="kanto-route-19"
+                                    Loaded="Hotspot_Loaded"
+                                    Click="Hotspot_Click" Canvas.Left="201" Canvas.Top="342" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Button Style="{StaticResource HotspotButtonBase}"
+                                    Width="118" Height="20"
+                                    Content="Route 20"
+                                    FontSize="2"
+                                    Tag="kanto-route-20"
+                                    Loaded="Hotspot_Loaded"
+                                    Click="Hotspot_Click" Canvas.Left="83" Canvas.Top="383" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Button Style="{StaticResource HotspotButtonBase}"
+                                    Width="25" Height="25"
+                                    Content="Cinnabar Island"
+                                    FontSize="2"
+                                    Tag="cinnabar-island"
+                                    Loaded="Hotspot_Loaded"
+                                    Click="Hotspot_Click" Canvas.Left="59" Canvas.Top="380" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Button Style="{StaticResource HotspotButtonBase}"
+                                    Width="26" Height="101"
+                                    Content="Route 21"
+                                    FontSize="2"
+                                    Tag="kanto-route-21"
+                                    Loaded="Hotspot_Loaded"
+                                    Click="Hotspot_Click" Canvas.Left="58" Canvas.Top="280" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                                <Button Style="{StaticResource HotspotButtonBase}"
+                                    Width="23" Height="80"
+                                    Content="Route 10"
+                                    FontSize="2"
+                                    Tag="kanto-route-10"
+                                    Loaded="Hotspot_Loaded"
+                                    Click="Hotspot_Click" Canvas.Left="378" Canvas.Top="53" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <Button Style="{StaticResource HotspotButtonBase}"
+                                    Width="24" Height="20"
+                                    Content="Lavender Town"
+                                    FontSize="2"
+                                    Tag="lavender-town"
+                                    Loaded="Hotspot_Loaded"
+                                    Click="Hotspot_Click" Canvas.Left="377" Canvas.Top="133" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Button Style="{StaticResource HotspotButtonBase}"
+                                    Width="26" Height="20"
+                                    Content="Indigo Plateau"
+                                    FontSize="3"
+                                    Tag="indigo-plateau"
+                                    Loaded="Hotspot_Loaded"
+                                    Click="Hotspot_Click" Canvas.Left="-1" Canvas.Top="13" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                             </Canvas>
                         </Grid>
                     </ScrollViewer>
